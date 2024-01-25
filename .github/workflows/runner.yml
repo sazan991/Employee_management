@@ -1,0 +1,22 @@
+name: CI/CD
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  build-and-deploy-dev-to-master:
+    if: |
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.base.ref == 'master' && 
+      github.event.pull_request.head.ref == 'dev'
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: SSH-PULL-BUILD-UP
+        run: |
+            cd  /home/ubuntu/enlightsoft-training/devops && git pull && cd backend && python3 manage.py runserver
