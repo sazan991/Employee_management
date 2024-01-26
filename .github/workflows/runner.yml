@@ -19,4 +19,4 @@ jobs:
 
       - name: SSH-PULL-BUILD-UP
         run: |
-            cd  /home/ubuntu/enlightsoft-training/devops && git pull && cd backend && python3 manage.py runserver
+            cd  /home/Documents/ERP/backend && git pull && cd backend && python3 manage.py runserver
